@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardModel
+public class GeneralModel
 {
     public string name;
-    public int level;
     public int hp;
     public int atk;
     public int def;
     public int spd;
-    public int timecost;
+    public int stm;
     public Sprite icon;
 
-    public CardModel(int cardID)
+    public GeneralModel(int generalID)
     {
-        CardEntity cardEntity = Resources.Load<CardEntity>("CardEntityList/card" + cardID);
+        GeneralEntity cardEntity = Resources.Load<GeneralEntity>("GeneralEntityList/general" + generalID);
         name = cardEntity.name;
         hp = cardEntity.hp;
-        level = cardEntity.level;
-        timecost = cardEntity.timecost;
+        atk = cardEntity.atk;
+        def = cardEntity.def;
+        spd = cardEntity.spd;
+        stm = cardEntity.stm;
         icon = cardEntity.icon;
     }
 }

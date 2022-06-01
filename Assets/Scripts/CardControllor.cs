@@ -17,7 +17,7 @@ public class CardControllor : MonoBehaviour
     }
     public void Init(int cardID)
     {
-        model = new CardModel();
+        model = new CardModel(cardID);
         cardview.Show(model);
         unitview.Show(model);
     }

@@ -9,14 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1269387b167c44c43a15cd7e541b5af3, type: 3}
-  m_Name: test_level1
+  m_Script: {fileID: 11500000, guid: 26c1819a2858d944491256f78c44b5f9, type: 3}
+  m_Name: general_2
   m_EditorClassIdentifier: 
-  name: test
-  level: 1
-  hp: 1
-  atk: 1
-  def: 1
-  spd: 1
-  timecost: 1
-  icon: {fileID: 21300000, guid: 7eca5eb76d1a9e4429a044ab8ff7efc6, type: 3}
+  name: "\u30DD\u30C1"
+  hp: 6
+  atk: 6
+  def: 6
+  spd: 6
+  stm: 6
+  icon: {fileID: 21300000, guid: ea04a1e10efe18a46879d32ccb9a030d, type: 3}

@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class CardView : MonoBehaviour
 {
-    [SerializeField] Text costText;
+    [SerializeField] Text timecostText;
     [SerializeField] Image iconImage;
 
     public void Show(CardModel cardModel)
     {
-        costText.text = cardModel.cost.ToString();
+        timecostText.text = cardModel.timecost.ToString();
         iconImage.sprite = cardModel.icon;
     }
 }
