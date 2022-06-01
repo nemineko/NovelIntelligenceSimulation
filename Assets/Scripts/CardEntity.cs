@@ -10,4 +10,5 @@ public class CardEntity : ScriptableObject
     public int level;
     public int cost;
     public Sprite icon;
+    public int cardID;
 }

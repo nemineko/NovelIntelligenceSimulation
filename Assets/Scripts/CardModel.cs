@@ -9,6 +9,7 @@ public class CardModel
     public int level;
     public int cost;
     public Sprite icon;
+    public int cardID;
     
     public CardModel()
     {
@@ -18,5 +19,6 @@ public class CardModel
         level = cardEntity.level;
         cost = cardEntity.cost;
         icon = cardEntity.icon;
+        cardID = cardEntity.cardID;
     }
 }

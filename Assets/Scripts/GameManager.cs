@@ -9,9 +9,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform playerUnitTransform, enemyUnitTransform;
     [SerializeField] CardControllor unitPrefab;
 
+    List<int> playerDeck = new List<int>() { 1,1,2,2 };
+    List<int> enemyDeck = new List<int>() { 3,0,3,0 };
+    public static GameManager unit;
+
+    void Awake()
+    {       
+        if (unit == null)
+        {
+            unit = this;
+        }
+    }
     void Start()
     {
         StartGame();
+
     }
     void StartGame()
     {
@@ -22,24 +34,61 @@ public class GameManager : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            CreateCard(playerHandTransform);
-            CreateCard(enemyHandTransform);
+            GiveCardToHand(playerDeck, playerHandTransform);
+            GiveCardToHand(enemyDeck, enemyHandTransform);
         }
     }
-
-    void CreateCard(Transform hand)
+    void GiveCardToHand(List<int> deck, Transform hand)
     {
-        CardControllor card = Instantiate(cardPrefab, hand,false);
+        if(deck.Count == 0)
+        {
+            return;
+        }
+        int cardID = deck[0];
+        deck.RemoveAt(0);
+        CreateCard(cardID, hand);
+    }
+    void CreateCard(int cardID, Transform hand)
+    {
+        CardControllor card = Instantiate(cardPrefab, hand, false);
+        card.Init(cardID);
+    }
+    public void CardClick()
+    {
+        if (cardPrefab == playerHandTransform)
+        {
+            PlayerCardClick();
+        }
+        else if (cardPrefab == enemyHandTransform)
+        {
+            EnemyCardClick();
+        }
+    }
+    void PlayerCardClick()
+    {
+        CardControllor[] cardList = playerHandTransform.GetComponentsInChildren<CardControllor>();
+        CardControllor card = cardList[0];
+        card.movement.SetUnitTransform(playerUnitTransform);
+        PlayerUnitOnField();
+    }
+    void EnemyCardClick()
+    {
+        CardControllor[] cardList = enemyHandTransform.GetComponentsInChildren<CardControllor>();
+        CardControllor card = cardList[0];
+        card.movement.SetUnitTransform(enemyUnitTransform);
+        EnemyUnitOnField();
     }
 
-    public static GameManager instance;
-    public void UnitOnField()
+    void PlayerUnitOnField()
     {
         CreateUnit(playerUnitTransform);
     }
-
-    public void CreateUnit(Transform unit)
+    void EnemyUnitOnField()
     {
-        CardControllor card = Instantiate(unitPrefab, unit, false);
+        CreateUnit(enemyUnitTransform);
+    }
+    void CreateUnit(Transform unitParent)
+    {
+        CardControllor unit = Instantiate(unitPrefab, unitParent, false);
     }
 }

@@ -213,10 +213,12 @@ GameObject:
   - component: {fileID: 7241294585751583864}
   - component: {fileID: 3081305353468658982}
   - component: {fileID: 1480054822482564400}
-  - component: {fileID: 4187337195242148875}
+  - component: {fileID: -2478304969649963562}
+  - component: {fileID: -8341541939433832791}
+  - component: {fileID: 9130479150044898495}
   m_Layer: 5
   m_Name: Card
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -294,6 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b80a3fe8c2d026408593568b113d836, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 0}
 --- !u!114 &1480054822482564400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +311,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   costText: {fileID: 3528534812879796932}
   iconImage: {fileID: 7767258138469057388}
---- !u!114 &4187337195242148875
+--- !u!61 &-2478304969649963562
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461370627828152273}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &-8341541939433832791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461370627828152273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e50098db0bc4bdb469bf6732004512a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &9130479150044898495
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -325,7 +366,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 4787210340926893730}
+        - m_Target: {fileID: -8341541939433832791}
           m_TargetAssemblyTypeName: CreateUnit, Assembly-CSharp
           m_MethodName: OnClick
           m_Mode: 1
