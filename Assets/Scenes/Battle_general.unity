@@ -1096,7 +1096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50098db0bc4bdb469bf6732004512a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardClick: {fileID: 0}
 --- !u!4 &1526942629
 Transform:
   m_ObjectHideFlags: 0

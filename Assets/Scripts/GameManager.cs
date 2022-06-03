@@ -17,13 +17,13 @@ public class GameManager : MonoBehaviour
     int playerGeneral = 0;
     int enemyGeneral = 1;
 
-    public static GameManager instantiate;
+    public static GameManager instance;
 
     void Awake()
     {       
-        if (instantiate == null)
+        if (instance == null)
         {
-            instantiate = this;
+            instance = this;
         }
     }
     void Start()
@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
     }
     public void CardClick()
     {
-        if (cardPrefab == playerHandTransform)
+        if (cardPrefab.transform.position == playerHandTransform.position)
         {
             PlayerCardClick();
         }

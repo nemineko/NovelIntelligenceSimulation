@@ -11,7 +11,8 @@ public class UnitView : MonoBehaviour
 
     public void Show(CardModel cardModel)
     {
-        hpText.text = cardModel.hp.ToString();
+        cardModel.OnDamage(10);
+        hpText.text = cardModel.Hp.ToString();
         levelText.text = cardModel.level.ToString();
         iconImage.sprite = cardModel.icon;
     }

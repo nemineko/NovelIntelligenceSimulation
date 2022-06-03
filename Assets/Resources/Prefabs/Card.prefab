@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: -2478304969649963562}
   - component: {fileID: -8341541939433832791}
   - component: {fileID: 9130479150044898495}
+  - component: {fileID: -3402772415125418779}
   m_Layer: 5
   m_Name: Card
   m_TagString: Unit
@@ -310,8 +311,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed5cc243faf2ae46a416e36c158bd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timecostText: {fileID: 0}
-  iconImage: {fileID: 0}
+  timecostText: {fileID: 3528534812879796932}
+  iconImage: {fileID: 7767258138469057388}
 --- !u!61 &-2478304969649963562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -380,3 +381,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &-3402772415125418779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461370627828152273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e704675d234b6614f9a7ddd545c1fd69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpText: {fileID: 0}
+  levelText: {fileID: 0}
+  iconImage: {fileID: 0}

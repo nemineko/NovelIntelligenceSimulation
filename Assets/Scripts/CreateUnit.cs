@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class CreateUnit : MonoBehaviour
 {
-    public GameManager cardClick;
+    // public GameManager cardClick;
     public void OnClick()
     {
-        cardClick.CardClick();
+        Debug.Log("OnClick");
+        // cardClick.CardClick();
+        GameManager.instance.CardClick();
     }
 }
