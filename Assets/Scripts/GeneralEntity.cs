@@ -6,7 +6,6 @@ using UnityEngine;
 public class GeneralEntity : ScriptableObject
 {
     public new string name;
-    public int hp;
     public int atk;
     public int def;
     public int spd;

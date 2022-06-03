@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50098db0bc4bdb469bf6732004512a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardClick: {fileID: 0}
 --- !u!1 &4255955026718124203
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,8 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bed5cc243faf2ae46a416e36c158bd2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  costText: {fileID: 3528534812879796932}
-  iconImage: {fileID: 7767258138469057388}
+  timecostText: {fileID: 0}
+  iconImage: {fileID: 0}
 --- !u!61 &-2478304969649963562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50098db0bc4bdb469bf6732004512a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardClick: {fileID: 0}
 --- !u!114 &9130479150044898495
 MonoBehaviour:
   m_ObjectHideFlags: 0

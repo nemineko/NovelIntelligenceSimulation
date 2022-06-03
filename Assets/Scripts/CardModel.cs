@@ -15,7 +15,7 @@ public class CardModel
 
     public CardModel(int cardID)
     {
-        CardEntity cardEntity = Resources.Load<CardEntity>("CardEntityList/card" + cardID);
+        CardEntity cardEntity = Resources.Load<CardEntity>("CardEntityList/card_" + cardID);
         name = cardEntity.name;
         hp = cardEntity.hp;
         level = cardEntity.level;

@@ -8,16 +8,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] CardControllor cardPrefab;
     [SerializeField] Transform playerUnitTransform, enemyUnitTransform;
     [SerializeField] CardControllor unitPrefab;
+    [SerializeField] Transform generalTransform;
+    [SerializeField] GeneralCTRL generalPrefab;
 
     List<int> playerDeck = new List<int>() { 1,1,2,2 };
     List<int> enemyDeck = new List<int>() { 3,0,3,0 };
-    public static GameManager unit;
+
+    int playerGeneral = 0;
+    int enemyGeneral = 1;
+
+    public static GameManager instantiate;
 
     void Awake()
     {       
-        if (unit == null)
+        if (instantiate == null)
         {
-            unit = this;
+            instantiate = this;
         }
     }
     void Start()
@@ -28,8 +34,17 @@ public class GameManager : MonoBehaviour
     void StartGame()
     {
         SettingInutHand();
+        SettingGeneral();
     }
-
+    void SettingGeneral()
+    {
+        GiveGeneral(generalTransform, playerGeneral);
+        GiveGeneral(generalTransform, enemyGeneral);
+    }
+    void GiveGeneral(Transform ground, int generalID)
+    {
+        CreateGeneral(ground, generalID);
+    }
     void SettingInutHand()
     {
         for (int i = 0; i < 4; i++)
@@ -47,6 +62,11 @@ public class GameManager : MonoBehaviour
         int cardID = deck[0];
         deck.RemoveAt(0);
         CreateCard(cardID, hand);
+    }
+    void CreateGeneral(Transform ground, int generalID)
+    {
+        GeneralCTRL general = Instantiate(generalPrefab, ground, false);
+        general.Init(generalID);
     }
     void CreateCard(int cardID, Transform hand)
     {
@@ -78,7 +98,6 @@ public class GameManager : MonoBehaviour
         card.movement.SetUnitTransform(enemyUnitTransform);
         EnemyUnitOnField();
     }
-
     void PlayerUnitOnField()
     {
         CreateUnit(playerUnitTransform);
