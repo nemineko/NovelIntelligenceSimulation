@@ -7,23 +7,25 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform playerHandTransform, enemyHandTransform;
     [SerializeField] CardControllor cardPrefab;
     [SerializeField] Transform playerUnitTransform, enemyUnitTransform;
-    [SerializeField] CardControllor unitPrefab;
-    [SerializeField] Transform generalTransform;
+    [SerializeField] UnitCTRL unitPrefab;
+    [SerializeField] Transform playerGeneralTransform, enemyGeneralTransform;
     [SerializeField] GeneralCTRL generalPrefab;
+    [SerializeField] Transform playerFlag;
+    [SerializeField] Transform enemyFlag;
 
-    List<int> playerDeck = new List<int>() { 1,1,2,2 };
-    List<int> enemyDeck = new List<int>() { 3,0,3,0 };
+    int playerGeneral = 1;
+    int enemyGeneral = 2;
 
-    int playerGeneral = 0;
-    int enemyGeneral = 1;
-
-    public static GameManager instantiate;
+    public static GameManager instance;
+    GeneralMovement generalMovement;
+    UnitDeck unitDeck;
+    CardDeck cardDeck;
 
     void Awake()
-    {       
-        if (instantiate == null)
+    {
+        if (instance == null)
         {
-            instantiate = this;
+            instance = this;
         }
     }
     void Start()
@@ -33,81 +35,83 @@ public class GameManager : MonoBehaviour
     }
     void StartGame()
     {
-        SettingInutHand();
+        SettingPlayerInutHand();
+        SettingEnemyInutHand();
         SettingGeneral();
     }
+   
+    //大将
     void SettingGeneral()
     {
-        GiveGeneral(generalTransform, playerGeneral);
-        GiveGeneral(generalTransform, enemyGeneral);
+        GiveGeneral(playerGeneralTransform, playerGeneral);
+        GiveGeneral(enemyGeneralTransform, enemyGeneral);
+
     }
     void GiveGeneral(Transform ground, int generalID)
     {
         CreateGeneral(ground, generalID);
-    }
-    void SettingInutHand()
-    {
-        for (int i = 0; i < 4; i++)
-        {
-            GiveCardToHand(playerDeck, playerHandTransform);
-            GiveCardToHand(enemyDeck, enemyHandTransform);
-        }
-    }
-    void GiveCardToHand(List<int> deck, Transform hand)
-    {
-        if(deck.Count == 0)
-        {
-            return;
-        }
-        int cardID = deck[0];
-        deck.RemoveAt(0);
-        CreateCard(cardID, hand);
     }
     void CreateGeneral(Transform ground, int generalID)
     {
         GeneralCTRL general = Instantiate(generalPrefab, ground, false);
         general.Init(generalID);
     }
+
+    //カード（手札）
+    void SettingPlayerInutHand()
+    {
+        //↓この行がおかしい
+        List<int> deck = cardDeck.playerDeck;
+        for (int i = 0; i < deck.Count; i++)
+        {
+           GiveCardToHand(deck, playerHandTransform, i);
+        }
+    }
+    void SettingEnemyInutHand()
+    {
+        //↓この行がおかしい
+        List<int> deck = cardDeck.enemyDeck;
+        for (int i = 0; i < deck.Count; i++)
+        {
+            GiveCardToHand(deck, enemyHandTransform, i);
+        }
+    }
+    void GiveCardToHand(List<int> deck, Transform hand, int i)
+    {
+        if(deck == null)
+        {
+            return;
+        }
+        Debug.Log(deck);
+        int cardID = deck[i];
+        CreateCard(cardID, hand);
+    }
     void CreateCard(int cardID, Transform hand)
     {
         CardControllor card = Instantiate(cardPrefab, hand, false);
         card.Init(cardID);
-    }
-    public void CardClick()
-    {
-        if (cardPrefab == playerHandTransform)
+        if (hand.transform.position == playerHandTransform.position)
         {
-            PlayerCardClick();
+            PlayerUnitOnField(cardID);
         }
-        else if (cardPrefab == enemyHandTransform)
+        else if (hand.transform.position == enemyHandTransform.position)
         {
-            EnemyCardClick();
+            EnemyUnitOnField(cardID);
         }
     }
-    void PlayerCardClick()
+
+　　//ユニット（フィールドに出た駒）
+    public void PlayerUnitOnField(int cardID)
     {
-        CardControllor[] cardList = playerHandTransform.GetComponentsInChildren<CardControllor>();
-        CardControllor card = cardList[0];
-        card.movement.SetUnitTransform(playerUnitTransform);
-        PlayerUnitOnField();
+        CreateUnit(cardID, playerUnitTransform);
     }
-    void EnemyCardClick()
+    void EnemyUnitOnField(int cardID)
     {
-        CardControllor[] cardList = enemyHandTransform.GetComponentsInChildren<CardControllor>();
-        CardControllor card = cardList[0];
-        card.movement.SetUnitTransform(enemyUnitTransform);
-        EnemyUnitOnField();
+        CreateUnit(cardID,enemyUnitTransform);
     }
-    void PlayerUnitOnField()
+    void CreateUnit(int cardID ,Transform unitParent)
     {
-        CreateUnit(playerUnitTransform);
-    }
-    void EnemyUnitOnField()
-    {
-        CreateUnit(enemyUnitTransform);
-    }
-    void CreateUnit(Transform unitParent)
-    {
-        CardControllor unit = Instantiate(unitPrefab, unitParent, false);
+        UnitCTRL unit = Instantiate(unitPrefab, unitParent, false);
+        unit.Init(cardID);
     }
 }

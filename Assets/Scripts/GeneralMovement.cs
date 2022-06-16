@@ -5,18 +5,30 @@ using UnityEngine;
 public class GeneralMovement : MonoBehaviour
 {
     [SerializeField] Transform defaultParent;
-    private new Rigidbody2D rigidbody;
-    public GeneralModel playerGeneralATK;
-    public GeneralModel enemyGeneralATK;
-    public GeneralModel playerGeneralDEF;
-    public GeneralModel enemyGeneralDEF;
+    Vector2 vector2;
+    GeneralModel generalModel;
+    float generalSPD;
+    int generalATK;
+    new Rigidbody2D rigidbody;
+    Transform general;
+    Transform generalflag;
+    public void Start()
+    {
+        general = GetComponent<Transform>();
+        generalSPD = generalModel.spd;
+        generalATK = generalModel.atk;
+        rigidbody = GetComponent<Rigidbody2D>();
+        
+        Debug.Log("vector2" + vector2);
+        Debug.Log("general" + general);
+        Debug.Log("generalSPD" + generalSPD);
 
-    // •¨—‰‰Z‚ğ‚µ‚½‚¢ê‡‚ÍFixedUpdate‚ğg‚¤‚Ì‚ªˆê”Ê“I
+    }
     void Update()
     {
-        Vector2 position = transform.position;
-
-
+        vector2 = generalflag.position - general.position;  //æ——ã¸ã®æ–¹å‘ã‚’è¨ˆç®—
+        rigidbody.AddForce(vector2 * generalATK);//æŠ¼ã—å‡ºã™åŠ›ã®è¨­å®š
+        transform.Translate(1, 0, 0);//å‹•ãã‹ã©ã†ã‹ãƒ†ã‚¹ãƒˆ
     }
     public void SetGeneralTransform(Transform parentTransform)
     {

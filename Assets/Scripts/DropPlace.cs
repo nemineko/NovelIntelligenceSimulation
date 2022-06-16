@@ -12,6 +12,10 @@ public class DropPlace : MonoBehaviour, IDropHandler
         if (unit != null)
         {
             unit.defaultParent = this.transform;
+            //ユニットの情報を取得する
+            //同じ種類のユニットが重なったら
+            ///1: 2つのユニットを消す
+            ///2: 新しくレベルアップしたユニットを出現させる
         }
 
     }

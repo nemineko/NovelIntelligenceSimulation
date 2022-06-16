@@ -248,10 +248,10 @@ GameObject:
   - component: {fileID: 4831865417784674352}
   - component: {fileID: 7241294585751583864}
   - component: {fileID: -8841938284630587058}
-  - component: {fileID: 3081305353468658982}
   - component: {fileID: 4554489405022517101}
   - component: {fileID: 3204435798235318282}
   - component: {fileID: 7425405755296643279}
+  - component: {fileID: 1770410620311639540}
   m_Layer: 5
   m_Name: Unit
   m_TagString: Untagged
@@ -335,19 +335,6 @@ MonoBehaviour:
   hpText: {fileID: 1822414681394221091}
   levelText: {fileID: 7634940680305406393}
   iconImage: {fileID: 7767258138469057388}
---- !u!114 &3081305353468658982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7461370627828152273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b80a3fe8c2d026408593568b113d836, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 0}
 --- !u!114 &4554489405022517101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,3 +386,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1770410620311639540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7461370627828152273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe3369fd02e65d4fbca1ce68eb4bdc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 0}

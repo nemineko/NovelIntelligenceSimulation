@@ -21,4 +21,8 @@ public class GeneralModel
         stm = cardEntity.stm;
         icon = cardEntity.icon;
     }
+    void Damage(int dmg)
+    {
+        
+    }
 }

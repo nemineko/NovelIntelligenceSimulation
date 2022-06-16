@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1269387b167c44c43a15cd7e541b5af3, type: 3}
   m_Name: card_4
   m_EditorClassIdentifier: 
-  name: test
+  name: test4
   level: 4
   hp: 4
   atk: 4

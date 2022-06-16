@@ -7,11 +7,9 @@ public class GeneralCTRL : MonoBehaviour
     GeneralView generalView;//ユニットの見かけに関すること
     GeneralModel generalModel;//データ（モデル）に関すること
     GeneralMovement generalMovement;
-
     private void Awake()
     {
         generalView = GetComponent<GeneralView>();
-        generalModel = GetComponent<GeneralModel>();
         generalMovement = GetComponent<GeneralMovement>();
     }
     public void Init(int generalID)

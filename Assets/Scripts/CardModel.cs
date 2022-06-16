@@ -18,6 +18,9 @@ public class CardModel
         CardEntity cardEntity = Resources.Load<CardEntity>("CardEntityList/card_" + cardID);
         name = cardEntity.name;
         hp = cardEntity.hp;
+        atk = cardEntity.atk;
+        def = cardEntity.def;
+        spd = cardEntity.spd;
         level = cardEntity.level;
         timecost = cardEntity.timecost;
         icon = cardEntity.icon;
