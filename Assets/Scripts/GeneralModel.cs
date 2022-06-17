@@ -10,6 +10,7 @@ public class GeneralModel
     public int spd;
     public int stm;
     public Sprite icon;
+    public int id;
 
     public GeneralModel(int generalID)
     {
@@ -20,6 +21,7 @@ public class GeneralModel
         spd = cardEntity.spd;
         stm = cardEntity.stm;
         icon = cardEntity.icon;
+        id = cardEntity.id;
     }
     void Damage(int dmg)
     {

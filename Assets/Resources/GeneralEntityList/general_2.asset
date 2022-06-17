@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: general_2
   m_EditorClassIdentifier: 
   name: "\u30DD\u30C1"
-  hp: 6
   atk: 6
   def: 6
   spd: 6
   stm: 6
   icon: {fileID: 21300000, guid: ea04a1e10efe18a46879d32ccb9a030d, type: 3}
+  id: 2

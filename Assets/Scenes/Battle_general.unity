@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: 699200697}
   - component: {fileID: 699200699}
   - component: {fileID: 699200698}
+  - component: {fileID: 699200700}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -839,7 +840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87bcaba32349aa4bb231cd35f70586e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerDeck: 00000000000000000300000003000000
+  playerDeck: 04000000040000000300000003000000
   enemyDeck: 01000000010000000200000002000000
 --- !u!114 &699200699
 MonoBehaviour:
@@ -873,6 +874,20 @@ MonoBehaviour:
   - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
   - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
   - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
+--- !u!114 &699200700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699200693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a76f10b7130984f87ed0affd2e8328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGeneral: 1
+  enemyGeneral: 2
 --- !u!1 &746469388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1320,7 +1335,6 @@ MonoBehaviour:
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &1474066200
 CanvasRenderer:
-Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

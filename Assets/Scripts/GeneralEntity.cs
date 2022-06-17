@@ -11,4 +11,5 @@ public class GeneralEntity : ScriptableObject
     public int spd;
     public int stm;
     public Sprite icon;
+    public int id;
 }

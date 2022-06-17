@@ -13,13 +13,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] Transform playerFlag;
     [SerializeField] Transform enemyFlag;
 
-    int playerGeneral = 1;
-    int enemyGeneral = 2;
-
-    public static GameManager instance;
-    GeneralMovement generalMovement;
     UnitDeck unitDeck;
     CardDeck cardDeck;
+    GeneralDeck generalDeck;
+
+    public static GameManager instance;
 
     void Awake()
     {
@@ -35,6 +33,8 @@ public class GameManager : MonoBehaviour
     }
     void StartGame()
     {
+        cardDeck = GetComponent<CardDeck>();
+        generalDeck = GetComponent<GeneralDeck>();
         SettingPlayerInutHand();
         SettingEnemyInutHand();
         SettingGeneral();
@@ -43,24 +43,24 @@ public class GameManager : MonoBehaviour
     //大将
     void SettingGeneral()
     {
-        GiveGeneral(playerGeneralTransform, playerGeneral);
-        GiveGeneral(enemyGeneralTransform, enemyGeneral);
-
+        int playerGeneral = generalDeck.playerGeneral;
+        int enemyGeneral = generalDeck.enemyGeneral;
+        GiveGeneral(playerGeneralTransform, playerGeneral, playerFlag);
+        GiveGeneral(enemyGeneralTransform, enemyGeneral, enemyFlag);
     }
-    void GiveGeneral(Transform ground, int generalID)
+    void GiveGeneral(Transform ground, int generalID, Transform flag)
     {
-        CreateGeneral(ground, generalID);
+        CreateGeneral(ground, generalID, flag);
     }
-    void CreateGeneral(Transform ground, int generalID)
+    void CreateGeneral(Transform ground, int generalID, Transform flag)
     {
         GeneralCTRL general = Instantiate(generalPrefab, ground, false);
-        general.Init(generalID);
+        general.Init(generalID, flag);
     }
 
     //カード（手札）
     void SettingPlayerInutHand()
     {
-        //↓この行がおかしい
         List<int> deck = cardDeck.playerDeck;
         for (int i = 0; i < deck.Count; i++)
         {
@@ -70,7 +70,6 @@ public class GameManager : MonoBehaviour
     }
     void SettingEnemyInutHand()
     {
-        //↓この行がおかしい
         List<int> deck = cardDeck.enemyDeck;
         for (int i = 0; i < deck.Count; i++)
         {
@@ -93,17 +92,17 @@ public class GameManager : MonoBehaviour
         card.Init(cardID);
     }
  　　//ユニット（フィールドに出た駒）
-    public void PlayerUnitOnField(int cardID)
+    public void PlayerUnitOnField(CardModel cardModel)
     {
-        CreateUnit(cardID, playerUnitTransform);
+        CreateUnit(cardModel, playerUnitTransform);
     }
-    void EnemyUnitOnField(int cardID)
+    void EnemyUnitOnField(CardModel cardModel)
     {
-        CreateUnit(cardID,enemyUnitTransform);
+        //CreateUnit(cardModel, enemyUnitTransform);
     }
-    void CreateUnit(int cardID ,Transform unitParent)
+    void CreateUnit(CardModel cardModel, Transform unitParent)
     {
         UnitCTRL unit = Instantiate(unitPrefab, unitParent, false);
-        unit.Init(cardID);
+        unit.Init(cardModel);
     }
 }

@@ -12,9 +12,10 @@ public class GeneralCTRL : MonoBehaviour
         generalView = GetComponent<GeneralView>();
         generalMovement = GetComponent<GeneralMovement>();
     }
-    public void Init(int generalID)
+    public void Init( int generalID, Transform flag)
     {
         generalModel = new GeneralModel(generalID);
+        generalMovement.Inut(generalModel, flag);
         generalView.Show(generalModel);
     }
 }

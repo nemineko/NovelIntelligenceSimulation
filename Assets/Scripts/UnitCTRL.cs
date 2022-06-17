@@ -12,9 +12,10 @@ public class UnitCTRL : MonoBehaviour
         unitview = GetComponent<UnitView>();
         movement = GetComponent<CardMovement>();
     }
-    public void Init(int cardID)
+    public void Init(CardModel cardModel)
     {
-        model = new CardModel(cardID);
+        int unitID = cardModel.id;
+        model = new CardModel(unitID);
         unitview.Show(model);
     }
 }

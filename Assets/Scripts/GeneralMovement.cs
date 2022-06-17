@@ -6,29 +6,23 @@ public class GeneralMovement : MonoBehaviour
 {
     [SerializeField] Transform defaultParent;
     Vector2 vector2;
-    GeneralModel generalModel;
     float generalSPD;
-    int generalATK;
+    float generalATK;
     new Rigidbody2D rigidbody;
-    Transform general;
+    int generalID;
     Transform generalflag;
-    public void Start()
+    public void Inut(GeneralModel generalModel, Transform flag)
     {
-        general = GetComponent<Transform>();
+        generalflag = flag;
         generalSPD = generalModel.spd;
         generalATK = generalModel.atk;
+        generalID = generalModel.id;
         rigidbody = GetComponent<Rigidbody2D>();
-        
-        Debug.Log("vector2" + vector2);
-        Debug.Log("general" + general);
-        Debug.Log("generalSPD" + generalSPD);
-
     }
     void Update()
     {
-        vector2 = generalflag.position - general.position;  //旗への方向を計算
+        vector2 = transform.position - generalflag.position;  //旗への方向を計算
         rigidbody.AddForce(vector2 * generalATK);//押し出す力の設定
-        transform.Translate(1, 0, 0);//動くかどうかテスト
     }
     public void SetGeneralTransform(Transform parentTransform)
     {

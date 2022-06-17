@@ -13,4 +13,5 @@ public class CardEntity : ScriptableObject
     public int spd;
     public int timecost;
     public Sprite icon;
+    public int id;
 }

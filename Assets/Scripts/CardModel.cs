@@ -12,6 +12,7 @@ public class CardModel
     public int spd;
     public int timecost;
     public Sprite icon;
+    public int id;
 
     public CardModel(int cardID)
     {
@@ -24,5 +25,6 @@ public class CardModel
         level = cardEntity.level;
         timecost = cardEntity.timecost;
         icon = cardEntity.icon;
+        id = cardEntity.id;
     }
 }

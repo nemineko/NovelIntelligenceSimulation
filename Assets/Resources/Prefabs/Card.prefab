@@ -322,7 +322,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 550877456836460826}
           m_TargetAssemblyTypeName: SelectCard, Assembly-CSharp
-          m_MethodName: GetName
+          m_MethodName: OnClick
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
