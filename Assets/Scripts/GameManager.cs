@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         List<int> deck = cardDeck.playerDeck;
         for (int i = 0; i < deck.Count; i++)
         {
+           Debug.Log(deck);
            GiveCardToHand(deck, playerHandTransform, i);
         }
     }
@@ -90,21 +91,8 @@ public class GameManager : MonoBehaviour
     {
         CardControllor card = Instantiate(cardPrefab, hand, false);
         card.Init(cardID);
-        if (hand.transform.position == playerHandTransform.position)
     }
-    public void CardClick()
-    {
-        if (cardPrefab.transform.position == playerHandTransform.position)
-        {
-            PlayerUnitOnField(cardID);
-        }
-        else if (hand.transform.position == enemyHandTransform.position)
-        {
-            EnemyUnitOnField(cardID);
-        }
-    }
-
-　　//ユニット（フィールドに出た駒）
+ 　　//ユニット（フィールドに出た駒）
     public void PlayerUnitOnField(int cardID)
     {
         CreateUnit(cardID, playerUnitTransform);
