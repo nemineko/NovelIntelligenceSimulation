@@ -91,6 +91,10 @@ public class GameManager : MonoBehaviour
         CardControllor card = Instantiate(cardPrefab, hand, false);
         card.Init(cardID);
         if (hand.transform.position == playerHandTransform.position)
+    }
+    public void CardClick()
+    {
+        if (cardPrefab.transform.position == playerHandTransform.position)
         {
             PlayerUnitOnField(cardID);
         }
