@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < deck.Count; i++)
         {
            Debug.Log(deck);
-           GiveCardToHand(deck, playerHandTransform, i);
+           GiveCardToHand(deck, playerHandTransform, i, true);
         }
     }
     void SettingEnemyInutHand()
@@ -73,10 +73,10 @@ public class GameManager : MonoBehaviour
         List<int> deck = cardDeck.enemyDeck;
         for (int i = 0; i < deck.Count; i++)
         {
-            GiveCardToHand(deck, enemyHandTransform, i);
+            GiveCardToHand(deck, enemyHandTransform, i, false);
         }
     }
-    void GiveCardToHand(List<int> deck, Transform hand, int i)
+    void GiveCardToHand(List<int> deck, Transform hand, int i, bool isPlayer)
     {
         if(deck == null)
         {
@@ -84,25 +84,25 @@ public class GameManager : MonoBehaviour
         }
         Debug.Log(deck);
         int cardID = deck[i];
-        CreateCard(cardID, hand);
+        CreateCard(cardID, hand, isPlayer);
     }
-    void CreateCard(int cardID, Transform hand)
+    void CreateCard(int cardID, Transform hand, bool isPlayer)
     {
         CardControllor card = Instantiate(cardPrefab, hand, false);
-        card.Init(cardID);
+        card.Init(cardID, isPlayer);
     }
  　　//ユニット（フィールドに出た駒）
-    public void PlayerUnitOnField(CardModel cardModel)
+    public void PlayerUnitOnField(PlayerCardModel cardModel)
     {
         CreateUnit(cardModel, playerUnitTransform);
     }
-    void EnemyUnitOnField(CardModel cardModel)
+    public void EnemyUnitOnField(PlayerCardModel cardModel)
     {
-        //CreateUnit(cardModel, enemyUnitTransform);
+        CreateUnit(cardModel, enemyUnitTransform);
     }
-    void CreateUnit(CardModel cardModel, Transform unitParent)
+    void CreateUnit(PlayerCardModel cardModel, Transform unitParent)
     {
         UnitCTRL unit = Instantiate(unitPrefab, unitParent, false);
-        unit.Init(cardModel);
+        unit.PlayerInit(cardModel);
     }
 }

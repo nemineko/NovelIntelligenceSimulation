@@ -5,15 +5,18 @@ using UnityEngine;
 public class CardControllor : MonoBehaviour
 {
     CardView cardview;//手札の見かけに関すること
-    CardModel model;//データ（モデル）に関すること
-
+    PlayerCardModel model;//データ（モデル）に関すること
+    bool isPlayer;//プレイヤーターンか否か
+    public PlayerCardModel Model { get => model; }
+    public bool IsPlayer { get => isPlayer; }
     private void Awake()
     {
         cardview = GetComponent<CardView>();
     }
-    public void Init(int cardID)
+    public void Init(int cardID, bool isPlayer)
     {
-        model = new CardModel(cardID);
+        model = new PlayerCardModel(cardID);
         cardview.Show(model);
+        this.isPlayer = isPlayer;
     }
 }

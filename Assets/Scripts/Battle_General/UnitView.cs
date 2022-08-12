@@ -9,7 +9,7 @@ public class UnitView : MonoBehaviour
     [SerializeField] Text levelText;
     [SerializeField] Image iconImage;
 
-    public void Show(CardModel cardModel)
+    public void Show(PlayerCardModel cardModel)
     {
         hpText.text = cardModel.hp.ToString();
         levelText.text = cardModel.level.ToString();

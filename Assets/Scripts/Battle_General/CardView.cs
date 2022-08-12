@@ -8,7 +8,7 @@ public class CardView : MonoBehaviour
     [SerializeField] Text timecostText;
     [SerializeField] Image iconImage;
 
-    public void Show(CardModel cardModel)
+    public void Show(PlayerCardModel cardModel)
     {
         timecostText.text = cardModel.timecost.ToString();
         iconImage.sprite = cardModel.icon;
