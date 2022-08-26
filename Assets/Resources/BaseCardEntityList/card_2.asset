@@ -9,15 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53a0e200e0fcc8d488e45e390c903442, type: 3}
-  m_Name: test1
+  m_Script: {fileID: 11500000, guid: 1269387b167c44c43a15cd7e541b5af3, type: 3}
+  m_Name: card_2
   m_EditorClassIdentifier: 
-  name: test1
+  name: test2
   level: 1
-  hp: 1
-  atk: 1
-  def: 1
-  spd: 1
-  timecost: 1
-  icon: {fileID: 21300000, guid: 95a81e11dab260e4491c1cb4d5f5ae54, type: 3}
-  id: 1
+  hp: 2
+  atk: 2
+  def: 2
+  spd: 2
+  timecost: 2
+  icon: {fileID: 21300000, guid: 8d68bf6b48ccb7a4e833f51e08feec5c, type: 3}
+  player: 0
+  id: 2

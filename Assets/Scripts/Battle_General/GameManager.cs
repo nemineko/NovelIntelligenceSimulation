@@ -12,10 +12,16 @@ public class GameManager : MonoBehaviour
     [SerializeField] GeneralCTRL generalPrefab;
     [SerializeField] Transform playerFlag;
     [SerializeField] Transform enemyFlag;
+    public List<int> playerDeck = new List<int>();
+    public List<int> enemyDeck = new List<int>();
+    public List<int> playerUnits = new List<int>();
+    public List<int> enemyUnits = new List<int>();
+    [SerializeField] int playerGeneral;
+    [SerializeField] int enemyGeneral;
 
-    UnitDeck unitDeck;
-    CardDeck cardDeck;
-    GeneralDeck generalDeck;
+    int playerListI = 0;
+    int enemyListI = 0;
+
 
     public static GameManager instance;
 
@@ -33,18 +39,14 @@ public class GameManager : MonoBehaviour
     }
     void StartGame()
     {
-        cardDeck = GetComponent<CardDeck>();
-        generalDeck = GetComponent<GeneralDeck>();
         SettingPlayerInutHand();
         SettingEnemyInutHand();
         SettingGeneral();
     }
-   
-    //大将
+
+    #region 大将
     void SettingGeneral()
     {
-        int playerGeneral = generalDeck.playerGeneral;
-        int enemyGeneral = generalDeck.enemyGeneral;
         GiveGeneral(playerGeneralTransform, playerGeneral, playerFlag);
         GiveGeneral(enemyGeneralTransform, enemyGeneral, enemyFlag);
     }
@@ -57,52 +59,83 @@ public class GameManager : MonoBehaviour
         GeneralCTRL general = Instantiate(generalPrefab, ground, false);
         general.Init(generalID, flag);
     }
+    #endregion
 
-    //カード（手札）
+    #region カード（手札）
     void SettingPlayerInutHand()
     {
-        List<int> deck = cardDeck.playerDeck;
+        List<int> deck = playerDeck;
         for (int i = 0; i < deck.Count; i++)
         {
-           Debug.Log(deck);
-           GiveCardToHand(deck, playerHandTransform, i, true);
+            GiveCardToHand(deck, playerHandTransform, i, true);
         }
     }
     void SettingEnemyInutHand()
     {
-        List<int> deck = cardDeck.enemyDeck;
+        List<int> deck = enemyDeck;
         for (int i = 0; i < deck.Count; i++)
         {
             GiveCardToHand(deck, enemyHandTransform, i, false);
         }
     }
-    void GiveCardToHand(List<int> deck, Transform hand, int i, bool isPlayer)
+    void GiveCardToHand(List<int> deck, Transform hand, int i, bool isPlayerTurn)
     {
         if(deck == null)
         {
             return;
         }
-        Debug.Log(deck);
         int cardID = deck[i];
-        CreateCard(cardID, hand, isPlayer);
+        CreateCard(cardID, hand, isPlayerTurn);
     }
-    void CreateCard(int cardID, Transform hand, bool isPlayer)
+    void CreateCard(int cardID, Transform hand, bool isPlayerTurn)
     {
-        CardControllor card = Instantiate(cardPrefab, hand, false);
-        card.Init(cardID, isPlayer);
+        CardControllor card = Instantiate(cardPrefab, hand, isPlayerTurn);
+        card.Init(cardID);
     }
- 　　//ユニット（フィールドに出た駒）
-    public void PlayerUnitOnField(PlayerCardModel cardModel)
+    #endregion
+    #region ユニット（フィールドに出た駒）
+    public void PlayerUnitOnField(BaseCardModel cardModel)
     {
-        CreateUnit(cardModel, playerUnitTransform);
+        cardModel.player = true;
+        CreatePlayerUnit(cardModel, playerUnitTransform);
+        Debug.Log("PlayerUnitOnField");
+
     }
-    public void EnemyUnitOnField(PlayerCardModel cardModel)
+    public void EnemyUnitOnField(BaseCardModel cardModel)
     {
-        CreateUnit(cardModel, enemyUnitTransform);
+        cardModel.player = false;
+        CreateEnemyUnit(cardModel, enemyUnitTransform);
+        Debug.Log("EnemyUnitOnField");
+
     }
-    void CreateUnit(PlayerCardModel cardModel, Transform unitParent)
+    void CreatePlayerUnit(BaseCardModel cardModel, Transform unitParent)
     {
-        UnitCTRL unit = Instantiate(unitPrefab, unitParent, false);
-        unit.PlayerInit(cardModel);
+        //リスト"playerUnits"の空データに識別id番号(int型)を追加
+        if(playerListI < 9)
+        {
+            if (playerUnits[playerListI] == 0)
+            {
+                UnitCTRL unit = Instantiate(unitPrefab, unitParent);
+                unit.Init(cardModel);
+                playerUnits[playerListI] = cardModel.id;
+                playerListI++;
+            }
+        }
+       
     }
+    void CreateEnemyUnit(BaseCardModel cardModel, Transform unitParent)
+    {
+        //リスト"enemyUnits"の空データに識別id番号(int型)を追加
+        if (enemyListI < 9)
+        {
+            if (enemyUnits[enemyListI] == 0)
+            {
+                UnitCTRL unit = Instantiate(unitPrefab, unitParent);
+                unit.Init(cardModel);
+                enemyUnits[enemyListI] = cardModel.id;
+                enemyListI++;
+            }
+        }
+    }
+    #endregion
 }

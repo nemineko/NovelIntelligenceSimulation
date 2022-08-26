@@ -420,7 +420,6 @@ GameObject:
   - component: {fileID: 258843313}
   - component: {fileID: 258843312}
   - component: {fileID: 258843315}
-  - component: {fileID: 258843316}
   m_Layer: 5
   m_Name: E_Unit
   m_TagString: Untagged
@@ -522,20 +521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7c3e5d33a27e74429d20af1b2fb3efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &258843316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 258843310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b2e3c2aaa341c40944439518c55769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerUnits: []
-  enemyUnits: []
 --- !u!1 &305072126
 GameObject:
   m_ObjectHideFlags: 0
@@ -780,9 +765,6 @@ GameObject:
   m_Component:
   - component: {fileID: 699200696}
   - component: {fileID: 699200697}
-  - component: {fileID: 699200699}
-  - component: {fileID: 699200698}
-  - component: {fileID: 699200700}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -828,66 +810,12 @@ MonoBehaviour:
   generalPrefab: {fileID: 3990102252000748681, guid: ca2aadc760e6e094c9a49e28a6893d92, type: 3}
   playerFlag: {fileID: 1316304408}
   enemyFlag: {fileID: 1864080352}
---- !u!114 &699200698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699200693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f87bcaba32349aa4bb231cd35f70586e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerDeck: 04000000040000000300000003000000
-  enemyDeck: 01000000010000000200000002000000
---- !u!114 &699200699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699200693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4b2e3c2aaa341c40944439518c55769, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerUnits:
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  enemyUnits:
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
-  - {fileID: 7461370627828152273, guid: cd2572491143e334ea6c55bf9d828422, type: 3}
---- !u!114 &699200700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 699200693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52a76f10b7130984f87ed0affd2e8328, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerGeneral: 1
-  enemyGeneral: 2
+  playerDeck: 01000000010000000400000004000000
+  enemyDeck: 02000000020000000300000003000000
+  playerUnits: 000000000000000000000000000000000000000000000000000000000000000000000000
+  enemyUnits: 000000000000000000000000000000000000000000000000000000000000000000000000
+  playerGeneral: 2
+  enemyGeneral: 1
 --- !u!1 &746469388
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyCardEntity", menuName = "Create Enemy Card")]
-public class EnemyCardEntity : ScriptableObject
+[CreateAssetMenu(fileName = "BaseCardEntity", menuName ="Create Base Card")]
+public class BaseCardEntity : ScriptableObject
 {
     public new string name;
     public int level;
@@ -13,5 +13,6 @@ public class EnemyCardEntity : ScriptableObject
     public int spd;
     public int timecost;
     public Sprite icon;
+    public bool player;
     public int id;
 }
