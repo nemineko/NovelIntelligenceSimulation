@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Laser
   - Enemy
+  - PlayerUnit
   - Unit
   layers:
   - Default
@@ -41,6 +42,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 1555113413
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Top
+    uniqueID: 634635407
     locked: 0

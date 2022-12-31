@@ -4,41 +4,46 @@ using UnityEngine;
 
 public class GeneralMovement : MonoBehaviour
 {
-    [SerializeField] Transform defaultParent;
+    public static GeneralMovement generalMovementInstance { get; private set; }
+
+
     Vector2 vector2;
     float generalSPD;
     float generalSTM;
     float generalATK;
     new Rigidbody2D rigidbody;
     int generalID;
-    Transform generalflag;
     bool isPush;
-    public void Inut(GeneralModel generalModel, Transform flag)
+
+    private void Awake()
     {
-        generalflag = flag;
-        generalSPD = generalModel.spd;
-        generalSTM = generalModel.stm;
-        generalATK = generalModel.atk;
-        generalID = generalModel.id;
-        rigidbody = GetComponent<Rigidbody2D>();
-        StartCoroutine(UpdateMove());
+        generalMovementInstance = this;
     }
-    IEnumerator UpdateMove()
+    public void Inut(GeneralEntity generalEntity, Transform flag)
+    {
+        generalSPD = generalEntity.spd;
+        generalSTM = generalEntity.stm;
+        generalATK = generalEntity.atk;
+        generalID = generalEntity.id;
+        rigidbody = GetComponent<Rigidbody2D>();
+        StartCoroutine(UpdateMove(flag));
+    }
+    IEnumerator UpdateMove(Transform flag)
     {
         while (true)
         {
             isPush = true;
-            StartCoroutine(UpdateAttack());
+            StartCoroutine(UpdateAttack(flag));
             yield return new WaitForSeconds(generalSTM);
             isPush = false;
             yield return new WaitForSeconds(generalSTM);
         }
     }
-    IEnumerator UpdateAttack()
+    IEnumerator UpdateAttack(Transform flag)
     {
         if (isPush == true)
         {
-            vector2 = transform.position - generalflag.position;  //旗への方向を計算
+            vector2 = transform.position - flag.position;  //旗への方向を計算
             rigidbody.AddForce(vector2 * generalATK);//押し出す力の設定
             yield return new WaitForSeconds(generalSPD * 0.5f);
         }
@@ -47,10 +52,5 @@ public class GeneralMovement : MonoBehaviour
             rigidbody.velocity = Vector3.zero;
             yield break;
         }
-    }
-    public void SetGeneralTransform(Transform parentTransform)
-    {
-        defaultParent = parentTransform;
-        transform.SetParent(defaultParent);
     }
 }

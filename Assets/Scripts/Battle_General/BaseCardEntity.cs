@@ -12,7 +12,9 @@ public class BaseCardEntity : ScriptableObject
     public int def;
     public int spd;
     public int timecost;
-    public Sprite icon;
-    public bool player;
+    public Sprite playerIcon;
+    public Sprite enemyIcon;
+    public Transform prefabCardUI;
+    public Transform prefabUnitUI;
     public int id;
 }

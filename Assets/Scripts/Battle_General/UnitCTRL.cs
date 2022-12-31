@@ -1,22 +1,54 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class UnitCTRL : MonoBehaviour
+
+public class UnitCTRL : MonoBehaviour, IDragHandler, IEndDragHandler
 {
-    UnitView unitview;//ユニットの見かけに関すること
-    BaseCardModel model;//データ（モデル）に関すること
-    public UnitMovement movement;
+    private Camera mainCamera;
+    private CardList cardList;
+    private BaseCardEntity activeCardType;
+
+
+
     private void Awake()
     {
-        unitview = GetComponent<UnitView>();
-        movement = GetComponent<UnitMovement>();
+
+        cardList = Resources.Load<CardList>(typeof(CardList).Name);
     }
-    public void Init(BaseCardModel baseModel)
+
+    void Start()
     {
-        int unitID = baseModel.id;
-        model = new BaseCardModel(unitID);
-        Debug.Log(baseModel);
-        unitview.Show(model);
+        mainCamera = Camera.main;
     }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (activeCardType != null)
+            {
+                Instantiate(activeCardType.prefabCardUI, GetMouseWorldPosition(), Quaternion.identity);
+            }
+        }
+    }
+
+    private Vector3 GetMouseWorldPosition()
+    {
+        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPosition.z = 0f;
+        return mouseWorldPosition;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = eventData.position;
+    }
+    public void OnEndDrag(PointerEventData eventData)
+    {
+     
+    }
+
+  
 }
