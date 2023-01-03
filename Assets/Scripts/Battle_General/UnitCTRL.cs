@@ -4,36 +4,25 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class UnitCTRL : MonoBehaviour, IDragHandler, IEndDragHandler
+public class UnitCTRL : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler
 {
     private Camera mainCamera;
-    private CardList cardList;
+    private UnitList unitList;
     private BaseCardEntity activeCardType;
+    public Transform defaultParent;
 
 
 
     private void Awake()
     {
 
-        cardList = Resources.Load<CardList>(typeof(CardList).Name);
+        unitList = Resources.Load<UnitList>(typeof(UnitList).Name);
     }
 
     void Start()
     {
         mainCamera = Camera.main;
     }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (activeCardType != null)
-            {
-                Instantiate(activeCardType.prefabCardUI, GetMouseWorldPosition(), Quaternion.identity);
-            }
-        }
-    }
-
     private Vector3 GetMouseWorldPosition()
     {
         Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
@@ -44,11 +33,13 @@ public class UnitCTRL : MonoBehaviour, IDragHandler, IEndDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position;
+        //Mathf.Clamp();
     }
     public void OnEndDrag(PointerEventData eventData)
     {
-     
     }
 
-  
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+    }
 }

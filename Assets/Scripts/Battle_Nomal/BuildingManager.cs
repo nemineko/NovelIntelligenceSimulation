@@ -2,16 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SuperTiled2Unity;
-using UnityEngine.Tilemaps;
 using UnityEngine.EventSystems;
+using System;
 
 public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set;}
+
+
+    public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
+
+    public class OnActiveBuildingTypeChangedEventArgs : EventArgs
+    {
+        public BuildingTypeEntity activeBuildingType;
+    }
+
+
     private Camera mainCamera;
     private BuildingTypeList buildingTypeList;
     private BuildingTypeEntity activeBuildingType;
-    [SerializeField]private Grid tilemap;
+    public Grid tilemap;
 
     private void Awake()
     {
@@ -34,21 +44,17 @@ public class BuildingManager : MonoBehaviour
         {
             if (activeBuildingType != null)
             {
-                Instantiate(activeBuildingType.prefab, GetMouseWorldPosition(), Quaternion.identity);
+                Instantiate(activeBuildingType.prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
             }
         }
-    }
-    private Vector3 GetMouseWorldPosition()
-    {
-        Vector3 mouseWorldPosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-        mouseWorldPosition.z = 0f;
-        Vector3Int tilemapMousePosition = tilemap.WorldToCell(mouseWorldPosition);
-        return tilemapMousePosition;
     }
 
     public void SetActiveBuildingType(BuildingTypeEntity buildingType)
     {
         activeBuildingType = buildingType;
+
+        OnActiveBuildingTypeChanged?.Invoke(this, new OnActiveBuildingTypeChangedEventArgs {activeBuildingType = activeBuildingType });
+
     }
 
     public BuildingTypeEntity GetActiveBuildingType()

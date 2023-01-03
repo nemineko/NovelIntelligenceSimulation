@@ -7,7 +7,7 @@ TagManager:
   - Laser
   - Enemy
   - PlayerUnit
-  - Unit
+  - UnitErea
   layers:
   - Default
   - TransparentFX
