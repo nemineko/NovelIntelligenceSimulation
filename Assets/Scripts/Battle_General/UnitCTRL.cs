@@ -37,9 +37,11 @@ public class UnitCTRL : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDrag
     }
     public void OnEndDrag(PointerEventData eventData)
     {
+
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+
     }
 }

@@ -11,22 +11,21 @@ public class ResourceManager : MonoBehaviour
 
 
 
-    private Dictionary<ResourceTypeEntity, int> resouceAmountDictionary;
+    private Dictionary<ResourceTypeEntity, int> resourceAmountDictionary;
 
     private void Awake()
     {
         Instance = this;
 
-        resouceAmountDictionary = new Dictionary<ResourceTypeEntity, int>();
+        resourceAmountDictionary = new Dictionary<ResourceTypeEntity, int>();
 
         ResourceTypeList resourceTypeList  = Resources.Load<ResourceTypeList>(typeof(ResourceTypeList).Name);
 
         foreach(ResourceTypeEntity resourceType in resourceTypeList.list)
         {
-            resouceAmountDictionary[resourceType] = 0;
+            resourceAmountDictionary[resourceType] = 0;
         }
 
-        TestLogResourceAmountDictionary();
     }
 
     private void Update()
@@ -35,13 +34,12 @@ public class ResourceManager : MonoBehaviour
         {
             ResourceTypeList resourceTypeList = Resources.Load<ResourceTypeList>(typeof(ResourceTypeList).Name);
             AddResource(resourceTypeList.list[0], 2);
-            TestLogResourceAmountDictionary();
         }
     }
 
     private void TestLogResourceAmountDictionary()
     {
-        foreach(ResourceTypeEntity resourceType in resouceAmountDictionary.Keys)
+        foreach(ResourceTypeEntity resourceType in resourceAmountDictionary.Keys)
         {
             //Debug.Log(resourceType.resourceName + ": " + resouceAmountDictionary[resourceType]);
         }
@@ -49,16 +47,15 @@ public class ResourceManager : MonoBehaviour
 
     public void AddResource(ResourceTypeEntity resourceType, int amount)
     {
-        resouceAmountDictionary[resourceType] += amount;
+        resourceAmountDictionary[resourceType] += amount;
 
         OnResourceAmountChanged?.Invoke(this, EventArgs.Empty);
 
-        TestLogResourceAmountDictionary();
 
     }
 
     public int GetResourseAmount(ResourceTypeEntity resourceType)
     {
-        return resouceAmountDictionary[resourceType];
+        return resourceAmountDictionary[resourceType];
     }
 }

@@ -12,7 +12,7 @@ public class CameraHandler : MonoBehaviour
     private void Start()
     {
         orthographicSize = cinemachineVirtualCamera.m_Lens.OrthographicSize;
-        targetOrthographicSize = 5f;
+        targetOrthographicSize = orthographicSize;
     }
     private void Update()
     {
@@ -33,15 +33,15 @@ public class CameraHandler : MonoBehaviour
     private void HandleZoom()
     {
         float zoomAmount = 2f;
-        targetOrthographicSize += Input.mouseScrollDelta.y * zoomAmount;
+        targetOrthographicSize += -Input.mouseScrollDelta.y * zoomAmount;
 
         float minOrthographicSize = 10;
         float maxOrthographicSize = 30;
-        targetOrthographicSize = Mathf.Clamp(orthographicSize, minOrthographicSize, maxOrthographicSize);
-
+        targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minOrthographicSize, maxOrthographicSize);
         float zoomSpeed = 5f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
+        Debug.Log("targetOrthographicSize:"+targetOrthographicSize);
     }
 }
