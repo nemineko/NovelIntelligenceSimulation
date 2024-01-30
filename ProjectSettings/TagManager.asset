@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - PlayerUnit
   - UnitErea
+  - Unit
   layers:
   - Default
   - TransparentFX

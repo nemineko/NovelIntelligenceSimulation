@@ -17,8 +17,6 @@ public class BuildingManager : MonoBehaviour
         public BuildingTypeEntity activeBuildingType;
     }
 
-
-    private Camera mainCamera;
     private BuildingTypeList buildingTypeList;
     private BuildingTypeEntity activeBuildingType;
     public Grid tilemap;
@@ -29,12 +27,6 @@ public class BuildingManager : MonoBehaviour
 
 
         buildingTypeList = Resources.Load<BuildingTypeList>(typeof(BuildingTypeList).Name);
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        mainCamera = Camera.main;
     }
 
     // Update is called once per frame

@@ -42,6 +42,6 @@ public class CameraHandler : MonoBehaviour
         orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);
 
         cinemachineVirtualCamera.m_Lens.OrthographicSize = orthographicSize;
-        Debug.Log("targetOrthographicSize:"+targetOrthographicSize);
+        //Debug.Log("targetOrthographicSize:"+targetOrthographicSize);
     }
 }
