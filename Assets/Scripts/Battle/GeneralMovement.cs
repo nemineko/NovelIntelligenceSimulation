@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GeneralMovement : MonoBehaviour
 {
-    public static GeneralMovement generalMovementInstance { get; private set; }
+    public static GeneralMovement Instance { get; private set; }
 
 
     Vector2 vector2;
@@ -17,7 +17,7 @@ public class GeneralMovement : MonoBehaviour
 
     private void Awake()
     {
-        generalMovementInstance = this;
+        Instance = this;
     }
     public void Inut(GeneralEntity generalEntity, Transform flag)
     {

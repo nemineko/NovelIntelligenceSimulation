@@ -33,7 +33,7 @@ public class GeneralManager : MonoBehaviour
             Transform playerGeneralTransform = Instantiate(generalPrefab.transform, P_Transform);
             playerGeneralTransform.Find("Icon").GetComponent<Image>().sprite = generalType.icon;
 
-            GeneralMovement.generalMovementInstance.Inut(generalType, P_Flag);
+            GeneralMovement.Instance.Inut(generalType, P_Flag);
 
         }
 
@@ -45,7 +45,7 @@ public class GeneralManager : MonoBehaviour
             Transform enemyGeneralTransform = Instantiate(generalPrefab.transform, E_Transform);
             enemyGeneralTransform.Find("Icon").GetComponent<Image>().sprite = generalType.icon;
 
-            GeneralMovement.generalMovementInstance.Inut(generalType, E_Flag);
+            GeneralMovement.Instance.Inut(generalType, E_Flag);
 
         }
     }

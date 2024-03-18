@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4abf1e017c14d6b4cae59ac2b907480c, type: 3}
+  m_Script: {fileID: 11500000, guid: cdf996ecea6783e49ae9332d7f78ff15, type: 3}
   m_Name: UnitList
   m_EditorClassIdentifier: 
-  playerUnitList: []
-  enemyUnitList: []
+  playerUnitList:
+  - {fileID: 11400000, guid: 1578b5b24d8c75f4ba89ba5434bb48c4, type: 2}
+  - {fileID: 11400000, guid: 9475da10f659bca4085221663122e1e4, type: 2}

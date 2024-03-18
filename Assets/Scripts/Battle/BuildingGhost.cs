@@ -12,17 +12,17 @@ public class BuildingGhost : MonoBehaviour
     }
     private void Start()
     {
-        BuildingManager.Instance.OnActiveBuildingTypeChanged += BuildingManager_OnActiveBuildingTypeChanged;
+        BuildingManager.Instance.OnActiveUnitChanged += BuildingManager_OnActiveBuildingTypeChanged;
     }
-    private void BuildingManager_OnActiveBuildingTypeChanged(object sender, BuildingManager.OnActiveBuildingTypeChangedEventArgs e)
+    private void BuildingManager_OnActiveBuildingTypeChanged(object sender, BuildingManager.OnActiveUnitChangedEventArgs e)
     {
-        if (e.activeBuildingType == null)
+        if (e.ActiveUnit == null)
         {
             Hide();           
         }
         else
         {
-            Show(e.activeBuildingType.sprite);
+            Show(e.ActiveUnit.Icon);
         }
     }
     private void Update()

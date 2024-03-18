@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1269387b167c44c43a15cd7e541b5af3, type: 3}
+  m_Name: Unit2
+  m_EditorClassIdentifier: 
+  name: "\u30C6\u30B9\u30C8\uFF12"
+  level: 1
+  hp: 1
+  atk: 1
+  def: 1
+  spd: 1
+  ability_building: 1
+  ability_communication: 1
+  ability_command: 1
+  Icon: {fileID: 21300000, guid: 7eca5eb76d1a9e4429a044ab8ff7efc6, type: 3}
+  prefab: {fileID: 3571597520374818110, guid: f2db475d64c05cd40aebeddf8da98833, type: 3}

@@ -5,6 +5,6 @@ using UnityEngine;
 
 public class UnitList : ScriptableObject
 {
-    public List<BaseCardEntity> playerUnitList;
-    public List<BaseCardEntity> enemyUnitList;
+    public List<BaseUnitEntity> playerUnitList;
+    //public List<BaseUnitEntity> enemyUnitList;
 }

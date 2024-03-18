@@ -26,17 +26,17 @@ public class CameraHandler : MonoBehaviour
 
 
         Vector3 moveDir = new Vector3(x, y).normalized;
-        float moveSpeed = 5f;
+        float moveSpeed = 10f;
 
         transform.position += moveDir * moveSpeed * Time.deltaTime;
     }
     private void HandleZoom()
     {
-        float zoomAmount = 2f;
+        float zoomAmount = 5f;
         targetOrthographicSize += -Input.mouseScrollDelta.y * zoomAmount;
 
-        float minOrthographicSize = 10;
-        float maxOrthographicSize = 30;
+        float minOrthographicSize = 2f;
+        float maxOrthographicSize = 20f;
         targetOrthographicSize = Mathf.Clamp(targetOrthographicSize, minOrthographicSize, maxOrthographicSize);
         float zoomSpeed = 5f;
         orthographicSize = Mathf.Lerp(orthographicSize, targetOrthographicSize, Time.deltaTime * zoomSpeed);

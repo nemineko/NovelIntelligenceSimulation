@@ -9,49 +9,68 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set;}
 
+    public event EventHandler<OnActiveUnitChangedEventArgs> OnActiveUnitChanged;
 
-    public event EventHandler<OnActiveBuildingTypeChangedEventArgs> OnActiveBuildingTypeChanged;
-
-    public class OnActiveBuildingTypeChangedEventArgs : EventArgs
+    public class OnActiveUnitChangedEventArgs : EventArgs
     {
-        public BuildingTypeEntity activeBuildingType;
+        public BaseUnitEntity ActiveUnit;
     }
 
-    private BuildingTypeList buildingTypeList;
-    private BuildingTypeEntity activeBuildingType;
+    public UnitList unitList;
+    private BaseUnitEntity activeUnit;
     public Grid tilemap;
+    [SerializeField] private GameObject unitPrefab;
+
 
     private void Awake()
     {
         Instance = this;
 
 
-        buildingTypeList = Resources.Load<BuildingTypeList>(typeof(BuildingTypeList).Name);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+        if (activeUnit != null )
         {
-            if (activeBuildingType != null && CanSpawnBuilding(buildingTypeList.list[0], UtilsClass.GetMouseWorldPosition()))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                Instantiate(activeBuildingType.prefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+                unitPrefab.GetComponent<SpriteRenderer>().sprite = activeUnit.Icon;
+
+                Instantiate(unitPrefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
+
+                UnitSelectUI.Instance.HideUnitButton();
+
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                SetActiveUnit(null);
+            }
+        }
+        else
+        {
+            if (Input.GetMouseButtonDown(1))
+            {
+                
+                {
+                    UnitControllor.Instance.CloseAction();
+
+                }
             }
         }
     }
-
-    public void SetActiveBuildingType(BuildingTypeEntity buildingType)
+    public void SetActiveUnit(BaseUnitEntity unit)
     {
-        activeBuildingType = buildingType;
+        activeUnit = unit;
 
-        OnActiveBuildingTypeChanged?.Invoke(this, new OnActiveBuildingTypeChangedEventArgs {activeBuildingType = activeBuildingType });
+        OnActiveUnitChanged?.Invoke(this, new OnActiveUnitChangedEventArgs {ActiveUnit = activeUnit });
 
     }
 
-    public BuildingTypeEntity GetActiveBuildingType()
+    public BaseUnitEntity GetActiveUnit()
     {
-        return activeBuildingType;
+        return activeUnit;
     }
 
     private bool CanSpawnBuilding(BuildingTypeEntity buildingTypeEntity, Vector3 position)
@@ -89,6 +108,8 @@ public class BuildingManager : MonoBehaviour
             BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
             if (buildingTypeHolder != null)
             {
+                Debug.Log("buildingTypeHolder = " + buildingTypeHolder);
+
                 //Its a building!
                 return true;
             }
@@ -96,4 +117,7 @@ public class BuildingManager : MonoBehaviour
 
         return false;
     }
+
+    
+   
 }
