@@ -22,6 +22,7 @@ public class UnitSelectUI : MonoBehaviour
         unitList = BuildingManager.Instance.unitList;
         btnTransformDictionary = new Dictionary<BaseUnitEntity, Transform>();
         InstantiateButton();
+        UpdateActiveUnitButton();
 
     }
     private void Start()
@@ -80,16 +81,18 @@ public class UnitSelectUI : MonoBehaviour
     private void UpdateActiveUnitButton()
     {
         arrowBtn.Find("selected").gameObject.SetActive(false);
-        foreach(BaseUnitEntity unit in btnTransformDictionary.Keys)
+
+        foreach(var keyValue in btnTransformDictionary)
         {
-            Transform btnTransform = btnTransformDictionary[unit];
-            btnTransform.Find("selected").gameObject.SetActive(false);
+            if(!keyValue.Value) continue;
+            keyValue.Value.Find("selected").gameObject.SetActive(false);
         }
 
         BaseUnitEntity activeBuildingType = BuildingManager.Instance.GetActiveUnit();
         if (activeBuildingType == null)
         {
             arrowBtn.Find("selected").gameObject.SetActive(true);
+
         }
         else
         {
@@ -109,8 +112,8 @@ public class UnitSelectUI : MonoBehaviour
         {
             InstantiateButton();
             UpdateActiveUnitButton();
-            BuildingManager.Instance.SetActiveUnit(null);
         }
+        BuildingManager.Instance.SetActiveUnit(null);
 
     }
 }

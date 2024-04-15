@@ -15,5 +15,4 @@ public class BaseUnitEntity : ScriptableObject
     public int ability_communication;
     public int ability_command;
     public Sprite Icon;
-    public GameObject prefab;
 }

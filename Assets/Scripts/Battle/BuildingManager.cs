@@ -37,12 +37,14 @@ public class BuildingManager : MonoBehaviour
             if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 unitPrefab.GetComponent<SpriteRenderer>().sprite = activeUnit.Icon;
-
                 Instantiate(unitPrefab, UtilsClass.GetMouseWorldPosition(), Quaternion.identity);
 
                 UnitSelectUI.Instance.HideUnitButton();
 
+                activeUnit = null;
+
             }
+            //右ボタンを
             else if (Input.GetMouseButtonDown(1))
             {
                 SetActiveUnit(null);
@@ -64,7 +66,11 @@ public class BuildingManager : MonoBehaviour
     {
         activeUnit = unit;
 
-        OnActiveUnitChanged?.Invoke(this, new OnActiveUnitChangedEventArgs {ActiveUnit = activeUnit });
+      　if (OnActiveUnitChanged != null)
+        {
+            OnActiveUnitChanged(this, new OnActiveUnitChangedEventArgs { ActiveUnit = activeUnit });
+        }
+        
 
     }
 
@@ -86,14 +92,11 @@ public class BuildingManager : MonoBehaviour
 
         foreach(Collider2D collider2D in collider2DArray)
         {
-            //Colliders inside the construction radius
             BuildingTypeHolder buildingTypeHolder = collider2D.GetComponent<BuildingTypeHolder>();
             if (buildingTypeHolder != null)
             {
-                //Has a BuildingTypeHolder
                 if (buildingTypeHolder.buildingType == buildingTypeEntity)
                 {
-                    //Theres already a building of this type within the construction radius!
                     return false;
                 }
             }

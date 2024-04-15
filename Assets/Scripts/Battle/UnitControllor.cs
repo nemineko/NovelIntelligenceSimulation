@@ -25,6 +25,7 @@ public class UnitControllor : MonoBehaviour, IDragHandler
     }
     public void OnDrag(PointerEventData eventData)
     {
+        print("OnDrag");
         transform.position = eventData.position;
     }
     private void ChoiceAction()
